@@ -4,7 +4,7 @@
 
 @section('content_header')
     <p class="mb-0 text-white font-bold">Add New Customer</p>
-
+<p>Employ one changes</p>
 @stop
 @section('content')
     @include('layouts.employe_form')
