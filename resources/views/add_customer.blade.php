@@ -4,7 +4,6 @@
 
 @section('content_header')
     <p class="mb-0 text-white font-bold">Add New Customer</p>
-    <p class="mb-0 text-white font-bold">Hello love kaleem</p>
 
 @stop
 @section('content')
