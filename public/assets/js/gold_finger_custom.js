@@ -6,6 +6,17 @@ $.ajaxSetup({
     }
 });
 
+// apply select 2
+$(".add_user_form select").select2();
+$(".add_user_form select").select2({
+    width: 'resolve' ,
+    dropdownCssClass:"select2-dropdown-fontsize"// need to override the changed default
+});
+//file upload show name of file
+$(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
 
 // add new user function here
 
@@ -28,12 +39,60 @@ $.ajaxSetup({
             },
             phone_no: {
                 required: true,
-
             },
             cnic_no: {
                 required: true,
-
-
+            },
+            dress_length: {
+                required: true,
+            },
+            dress_teera: {
+                required: true,
+            },
+            dress_teera_style: {
+                valueNotEquals: "default",
+            },
+            dress_bazoo: {
+                required: true,
+            },
+            dress_galla: {
+                required: true,
+            },
+            dress_galla_style: {
+                valueNotEquals: "default",
+            },
+            dress_kandha: {
+                required: true,
+            },
+            dress_kohni: {
+                required: true,
+            },
+            dress_chaati: {
+                required: true,
+            },
+            dress_darmean: {
+                required: true,
+            },
+            dress_kamar: {
+                required: true,
+            },
+            dress_hip: {
+                required: true,
+            },
+            dress_shalwar_trouser: {
+                required: true,
+            },
+            dress_pancha: {
+                required: true,
+            },
+            dress_shalwar_ghaira: {
+                required: true,
+            },
+            dress_thai: {
+                required: true,
+            },
+            dress_godda: {
+                required: true,
             },
 
             status: {
@@ -43,17 +102,29 @@ $.ajaxSetup({
                 required: true,
             },
         },
-        highlight: function(element, errorClass, validClass) {
-            $(element).addClass('is-invalid');
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            $(element).removeClass('is-invalid');
-        },
+
+        // highlight: function(element, errorClass, validClass) {
+        //     $(element).addClass('is-invalid');
+        // },
+        // unhighlight: function(element, errorClass, validClass) {
+        //     $(element).removeClass('is-invalid');
+        // },
+        errorPlacement: function(error, element) {
+			if (element.hasClass("select2-hidden-accessible")) {
+				error.insertAfter(element.next("span"));
+			} else {
+				error.insertAfter(element);
+			}
+		},
         submitHandler: function(form, event) {
             event.preventDefault();
             console.log(form);
             var formData = new FormData(form);
             formData.append("role",userRole);
+            if($(".checkboxMeasurement").is(":checked")){
+                formData.append("measurement",true);
+
+            }
             console.log(formData);
             $.ajax({
                 url: route,
@@ -89,13 +160,18 @@ $.ajaxSetup({
             });
         }
     });
+    $(".add_user_form .select2-hidden-accessible").on("change", function() {
+		if ($(this).valid()) {
+			$(this).next("span").removeClass("error").addClass("valid");
+		}
+	});
 }
 
 //show user function here
  // data table
  var userDatatable='';
  function show_users_data(listRoute,userRole,tableId){
-     console.log(tableId);
+     console.log(listRoute+"___"+userRole+"___"+tableId);
     userDatatable = tableId.DataTable({
     processing: true,
     serverSide: true,
@@ -163,6 +239,7 @@ $.ajaxSetup({
                 $("#userModal .modal-body").html(response.html);
         $('.update_user_form .phone_no').mask('0000-0000-000');
         $('.update_user_form .cnic_no').mask('00000-0000000-0');
+        $(".update_user_form select").select2();
         $("#userModal").modal("show");
 
 
@@ -247,7 +324,7 @@ $.ajaxSetup({
  }
 
  //update user data here
- function update_user_func(dataId,updateRoute,formData){
+ function update_user_func(dataId,updateRoute,formData,button){
 
     $.ajax({
         type: 'post',
@@ -258,9 +335,12 @@ $.ajaxSetup({
         processData: false,
         beforeSend: function() {
 
+            $(button).prop("disabled",true);
+            $(button).css("opacity",0.3);
         },
         success: function(response) {
-
+            $(button).prop("disabled",false);
+            $(button).css("opacity",1);
             if (!response.error) {
                 $("#userModal").modal("hide");
                 if(userDatatable!='')

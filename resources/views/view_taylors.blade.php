@@ -66,6 +66,8 @@
 @section('plugins.Sweetalert2', true)
 @section('plugins.jqueryMaskPlugin', true)
 @section('plugins.jqueryValidation', true)
+@section('plugins.Select2', true)
+
 <script src="{{asset('assets/js/gold_finger_custom.js')}}"></script>
 
 <script defer>
@@ -96,12 +98,13 @@
 
 // update taylor here
         $(document).on("click",".update_taylor_btn",function(){
+            var button = $(this);
         var dataId = $(this).attr("data-id");
         var form = $(this).parents(".update_user_form");
         var formData = new FormData(form[0]);
         formData.append("id",dataId);
         var updateRoute =  "{{ route('taylor.update') }}";
-        update_user_func(dataId,updateRoute,formData);
+        update_user_func(dataId,updateRoute,formData,button);
 
         });
     });

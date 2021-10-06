@@ -85,9 +85,9 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
-    'layout_fixed_footer' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
+    'layout_fixed_footer' => true,
     'layout_dark_mode' => null,
 
     /*
@@ -269,13 +269,7 @@ return [
         //     'url'  => 'admin/settings',
         //     'icon' => 'fas fa-fw fa-lock',
         // ],
-        [
-            'text'    => 'Employes',
-            // 'icon'    => 'fas fa-fw fa-share',
-            'icon' => 'fas fa-fw fa-users',
-
-            'submenu' => [
-                [
+            [
                     'text' => 'Taylor',
                     'icon'=>'fas fa-tshirt',
                     'url'  => '/taylor',
@@ -291,9 +285,9 @@ return [
                             'url'  => '/view-taylor',
 
                         ],
-                     ],
-                ],
-                [
+            ],
+        ],
+            [
                     'text'    => 'Cutter',
                     'icon'=>'fas fa-cut',
                     'url'     => '/cutter',
@@ -309,11 +303,8 @@ return [
 
                             ],
                          ],
-
-
-                ],
             ],
-        ],
+
 
         [
             'text'    => 'Customers',
@@ -328,7 +319,7 @@ return [
 
                 ],
                 [
-                    'text'    => 'View Customers',
+                    'text'    => 'View Customer',
                     // 'icon'=>'fas fa-user',
                     'url'     => '/view-customer',
 

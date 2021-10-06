@@ -66,6 +66,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/view-customer', function () {
         return view('view_customers');
     });
+
+    Route::post('/store-customer', [UserController::class, 'store'])->name('add.customer');
+    Route::get('/view-customer/list', [UserController::class, 'show'])->name('customer.list');
+
+    Route::get('/view-customer/edit', [UserController::class, 'edit'])->name('customer.edit');
+    Route::post('/view-customer/update', [UserController::class, 'update'])->name('customer.update');
+    Route::delete('/view-customer/delete', [UserController::class, 'destroy'])->name('customer.delete');
     // customers routes end here
 
 });

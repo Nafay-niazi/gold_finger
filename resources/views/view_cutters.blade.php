@@ -66,6 +66,8 @@
 @section('plugins.Sweetalert2', true)
 @section('plugins.jqueryMaskPlugin', true)
 @section('plugins.jqueryValidation', true)
+@section('plugins.Select2', true)
+
 <script src="{{asset('assets/js/gold_finger_custom.js')}}"></script>
 
 <script defer>
@@ -97,6 +99,7 @@
 
 // update cutter here
         $(document).on("click",".update_cutter_btn",function(){
+            var button = $(this);
         var dataId = $(this).attr("data-id");
         var form = $(this).parents(".update_user_form");
         var formData = new FormData(form[0]);

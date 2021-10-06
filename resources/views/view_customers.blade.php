@@ -8,7 +8,7 @@
 @section('content')
     <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-gold-500 text-white">
                     <p class="modal-title font-bold" id="exampleModalLabel">Update <small>Details</small></p>
@@ -24,12 +24,12 @@
         </div>
     </div>
 
-    {{-- <div class="py-5 container ">
-        <table class="table table-striped table-bordered dt-responsive nowrap no-footer " id="taylorTable">
+    <div class="py-5 container ">
+        <table class="table table-striped table-bordered dt-responsive nowrap no-footer " id="customerTable">
             <thead>
                 <tr>
                     <th>Sr. no</th>
-                    <th>Taylor name</th>
+                    <th>customer name</th>
                     <th>Email</th>
                     <th>Phone no</th>
                     <th>Address</th>
@@ -43,13 +43,13 @@
 
             </tbody>
         </table>
-    </div> --}}
+    </div>
 @stop
 
 
 @section('css')
     <style>
-        #taylorForm label.error {
+        #customerForm label.error {
             color: red;
         }
 
@@ -66,44 +66,46 @@
 @section('plugins.Sweetalert2', true)
 @section('plugins.jqueryMaskPlugin', true)
 @section('plugins.jqueryValidation', true)
+@section('plugins.Select2', true)
+
 <script src="{{asset('assets/js/gold_finger_custom.js')}}"></script>
 
-{{-- <script defer>
+<script defer>
     $(document).ready(function() {
 // show user data in datatable
-       var listRoute =  "{{ route('taylor.list') }}";
-       var userRole = "taylor";
-       var tableId= $("#taylorTable");
+       var listRoute =  "{{ route('customer.list') }}";
+       var userRole = "customer";
+       var tableId= $("#customerTable");
        show_users_data(listRoute,userRole,tableId);
 
-        //edit taylor
+        //edit customer
 
-        $(document).on("click", ".edit_taylor", function() {
+        $(document).on("click", ".edit_customer", function() {
         var dataId = $(this).attr("data-id");
-        var editRoute =  "{{ route('taylor.edit') }}";
+        var editRoute =  "{{ route('customer.edit') }}";
        show_edit_data(dataId,editRoute,userRole)
         });
 
-        // delete taylor
-        $(document).on("click", ".delete_taylor", function() {
+        // delete customer
+        $(document).on("click", ".delete_customer", function() {
 
         var deleteRow = $(this).parents("tr");
         var dataId = $(this).attr("data-id");
-        var deleteRoute =  "{{ route('taylor.delete') }}";
+        var deleteRoute =  "{{ route('customer.delete') }}";
         delete_user_func(dataId,deleteRoute,deleteRow);
 
         });
 
-// update taylor here
-        $(document).on("click",".update_taylor_btn",function(){
+// update customer here
+        $(document).on("click",".update_customer_btn",function(){
         var dataId = $(this).attr("data-id");
         var form = $(this).parents(".update_user_form");
         var formData = new FormData(form[0]);
         formData.append("id",dataId);
-        var updateRoute =  "{{ route('taylor.update') }}";
+        var updateRoute =  "{{ route('customer.update') }}";
         update_user_func(dataId,updateRoute,formData);
 
         });
     });
-</script> --}}
+</script>
 @stop

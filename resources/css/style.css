@@ -69,7 +69,11 @@ margin-left: 4px;
     width: 256px !important;
 }
 
-/* .main-sidebar .nav-sidebar li.has-treeview ul.nav-treeview:first-child li.has-treeview:first-child{
-    margin-left: 4px;
-    border-left: 3px solid #ce984e;
-} */
+.custom-control-input:checked~.custom-control-label::before{
+    border-color: #ce984e !important;
+    background-color: #ce984e !important;
+}
+.select2-dropdown-fontsize
+{
+    font-size: .75rem !important;
+}
